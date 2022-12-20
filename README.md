@@ -9,5 +9,5 @@
 - Для запусска прописать 2 команду flask run
 - Для окрытия сайта прописать в адресной стороке localhost:5000
 
-ссылка  со скирами  https://colab.research.google.com/drive/1VeSYbCFEU0ej83OhUMDcqUCL9m2UJV_r?usp=sharing
+ссылка  со скирами  https://colab.research.google.com/drive/1du7gmcdTSM4YW2OsCgMCl5GPMMalZeHv?usp=sharing
 
