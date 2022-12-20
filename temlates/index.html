@@ -1,24 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="{{url_for('static',filename='css/style.css') }}">
-	<title>Main Site</title>
-</head>
-<body>
-	<h1 class="main">Welcome to Mikhail's Page</h1>
-	
-	<ul class="menu">
-			<a class="menu" href="localhost:5000">
-				Main
-			</a>
-			<a class="menu" href="parser.html">
-				Parser
-			</a>
-			<a class="menu" href="contacts.html">
-				Contacts
-			</a>
-	</ul>
-	<h1 class="main1">This is site main page!</h1>
-</body>
+<html>
+  <head>
+	<a> Страница Гапонова Михаила</a>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <title>URL Gapmeeee</title>
+    <script type="text/javascript">
+    function get(){
+    $.get("isrunning", function(data){
+    if(data == "true"){
+    $("#count").load("count");
+    $('#log').load("list.txt");
+    }else{
+    $("#sbm").attr("disabled", null);
+    $("#stop").attr("disabled", "true");
+    $("#count").load("count");
+    $('#log').load("list.txt");
+    }
+    });
+    }
+
+    function stop(){
+    $("#log").load("stop");
+    $("#sbm").attr("disabled", null);
+    $("#stop").attr("disabled", "true");
+    }
+
+    function start(kw){
+    if(kw != null){
+    $("#log").load("run?kw=" + kw);
+    setInterval(get, 5000);
+    $("#sbm").attr("disabled", "true");
+    $("#stop").attr("disabled",null);
+    }}
+
+    $(function(){
+    $.get("isrunning", function(data){
+    if(data == "false"){
+    $("#sbm").attr("onclick", "start( $('#kw').val() )");
+    $("#stop").attr("disabled","");
+    $("#sbm").attr("disabled",null);
+    get();
+    }else{
+    setInterval(get, 5000);
+    $("#sbm").attr("disabled", "true");
+    $("#stop").attr("disabled", null);
+    }
+    });
+    });
+    </script>
+  </head>
+  <body>
+     <div id="head">
+     <table border="3">
+     <tbody>
+     <tr><span style="color:rgb(2, 0, 255);font-size: 25;font-family: Verdana, Geneva, Tahoma, sans-serif;float: center;">Введите URL: </span><input type="text" id="kw" size="200" style="border: 4px solid rgb(2, 0, 255);padding: 10px;float: center;"> <button id="sbm" style="border: 4px solid rgb(2, 0, 255);margin-left: 15px;padding: 10px;font-family: Verdana, Geneva, Tahoma, sans-serif;">Start</button><button id="stop" style="border: 4px solid rgb(8, 4, 255);margin-left: 15px;padding: 10px;font-family: Verdana, Geneva, Tahoma, sans-serif;"  onclick="stop()">Stop</button></tr>
+     <p>Parsed <span id="count" style="color:rgb(2, 0, 255);font-family: Verdana, Geneva, Tahoma, sans-serif;float: center;">0</span> URLs </p><a id="download" href="list.txt?astype=plain" target="_blank">Download</a>
+     </tbody>
+     </table
+     </div>
+     <hr>
+     <div id="log">
+     </div>
+  </body>
 </html>
